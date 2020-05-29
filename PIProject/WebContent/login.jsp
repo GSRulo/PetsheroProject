@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo.svg" />
 	<title>Login</title>
 	<link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
@@ -48,11 +49,20 @@
 							<h1 class="mb-4 mt-5 text-center text-uppercase font-weight-bold">Login</h1>
 							<div class="form-group">
 								<label class="font-weight-bold">E-mail</label>
-								<input type="text" name="usuario" class="form-control" required>
+								<input type="email" name="usuario" class="form-control" required>
+								<small id="error-email" class="d-block text-danger"></small>
 							</div>
 							<div class="form-group">
 								<label class="font-weight-bold">Senha</label>
-								<input type="password" name="senha" class="form-control" required>
+								<div class="input-group">
+								  <input type="password" name="senha" class="form-control" required>
+								  <div class="input-group-prepend">
+								    <div class="input-group-text show-password" title="Ver senha">
+								      <i class="fas fa-eye"></i>
+								    </div>
+								  </div>
+								</div>
+								<small id="error-password" class="d-block text-danger"></small>
 							</div>
 							<!--  -->
 							<c:if test="${param.error ne null and param.error eq 'authentication'}">
@@ -61,6 +71,7 @@
 								</div>
 							</c:if>
 							<!--  -->
+							<input type="hidden" name="command" value="AuthController"/>
 							<div class="form-group">
 								<button type="submit" class="text-uppercase btn-block btn-first rounded py-2">entrar</button>
 							</div>
@@ -78,12 +89,45 @@
 	</div>
 	<script type="text/javascript" src="assets/vendors/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="assets/vendors/jquery-validate/pt-BR.js"></script>
     <script type="text/javascript">
 	    $(document).ready(function(){
+	    	$("form").validate({
+				focusInvalid: true,
+				errorElement: "small",
+				errorPlacement: function(error, element){
+					if (element.attr("name") == "senha" ) {
+		                $("#error-password").text($(error).text());
+		            }else if(element.attr("name") == "usuario" ){
+		            	$("#error-email").text($(error).text());
+		            }
+				},
+				success: function(label,element) {
+				    label.parent().removeClass('error');
+				    label.remove(); 
+				}
+			});
+	    	
 	    	$('form').on("submit", function(){
-	    		var btn = $(this).find("button[type=submit]");
-				btn.attr("disabled",true);
-				btn.html('Entrando <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+	    		if($(this).valid()){
+	    			var btn = $(this).find("button[type=submit]");
+					btn.attr("disabled",true);
+					btn.html('Entrando <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+	    		}
+	    	});
+	    	
+	    	var showPass = false;
+	    	var inputPass = $("[name=senha]");
+	    	$(".show-password").click(function(){
+	    		if(!showPass){
+	    			$(this).html('<i class="fas fa-eye-slash"></i>').attr("title","Esconder senha");
+	    			inputPass.attr("type","text");
+	    		}else{
+	    			$(this).html('<i class="fas fa-eye"></i>').attr("title","Ver senha");
+	    			inputPass.attr("type","password");
+	    		}
+	    		showPass = !showPass;
 	    	});
 	    });
     </script>

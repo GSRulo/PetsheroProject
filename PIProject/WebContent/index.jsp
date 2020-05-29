@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo.svg" />
     <title>Home</title>
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
@@ -20,14 +21,6 @@
 </head>
 
 <body>
-    <%
-		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		int idUsuario = (int) session.getAttribute("idUsuario");
-	%>
-    <%
-	@SuppressWarnings ("unchecked")
-	ArrayList<Adocao> adocoesLimit = (ArrayList<Adocao>) session.getAttribute("adocoesLimit");
-	%>
     <!-- IMPORTS PAGES -->
     <c:import var="menu" url="components/menu.jsp" />
     <c:import var="footer" url="components/footer.jsp" />

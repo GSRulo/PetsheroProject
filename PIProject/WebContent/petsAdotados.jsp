@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo.svg" />
     <title>Pets Adotados e cadastrados</title>
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
@@ -17,13 +18,6 @@
     <link rel="stylesheet" href="assets/css/main.css">
 
 <body>
-    <% 
-		@SuppressWarnings ("unchecked")
-		ArrayList<Adocao> filterAdicionados = (ArrayList<Adocao>) session.getAttribute("filterAdicionados");
-		
-		@SuppressWarnings ("unchecked")
-		ArrayList<Adocao> filterAdotados = (ArrayList<Adocao>) session.getAttribute("filterAdotados");
-	%>
     <!-- IMPORTS PAGES -->
     <c:import var="menu" url="components/menu.jsp" />
     <c:import var="footer" url="components/footer.jsp" />
@@ -143,101 +137,109 @@
                                                 </p>
                                             </div>
                                             <c:set var="checkStatus" value="${item.getStatus().getNameStatus()}" />
-											<c:choose>
-												<c:when test="${checkStatus.toLowerCase() eq 'aberto'}">
-													<div class="card-body">
-                                                    <a class="btn btn-first btn-block" data-toggle="collapse"
-                                                        href="#form-edit-${item.idAdocao}" role="button"
-                                                        aria-expanded="false"
-                                                        aria-controls="form-edit-${item.idAdocao}">Editar</a>
+                                            <c:choose>
+                                                <c:when test="${checkStatus.toLowerCase() eq 'aberto'}">
+                                                    <div class="card-body">
+                                                        <a class="btn btn-first btn-block" data-toggle="collapse"
+                                                            href="#form-edit-${item.idAdocao}" role="button"
+                                                            aria-expanded="false"
+                                                            aria-controls="form-edit-${item.idAdocao}">Editar</a>
 
-                                                    <div class="collapse" id="form-edit-${item.idAdocao}">
-                                                        <div class="card card-body">
-                                                            <form action="petsAdotados" class="form-edit" method="post"
-                                                                accept-charset="UTF-8">
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Idade</label>
-                                                                    <c:set var="idade" value="${item.idade}" />
-                                                                    <select name="idade" class="form-control" required
-                                                                        data-selected="${idade.toLowerCase()}">
-                                                                        <option value="" disabled>Selecione a idade
-                                                                        </option>
-                                                                        <option value="Filhote">Filhote</option>
-                                                                        <option value="Adulto">Adulto</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Espécie</label>
-                                                                    <input type="text" name="tipo_animal"
-                                                                        class="form-control" value="${item.tipo}"
-                                                                        required />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Sexo</label>
-                                                                    <c:set var="sexo"
-                                                                        value="${item.getSexoPet().getSexo()}" />
-                                                                    <select name="sexo_animal" class="form-control"
-                                                                        required data-selected="${sexo.toLowerCase()}">
-                                                                        <option value="" disabled>Selecione o sexo
-                                                                        </option>
-                                                                        <option value="macho">Macho</option>
-                                                                        <option value="femea">Fêmea</option>
-                                                                        <option value="desconhecido">Desconhecido
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Tamanho</label>
-                                                                    <c:set var="tamanho"
-                                                                        value="${tamanho.toLoserCase()}" />
-                                                                    <select name="tamanho" class="form-control" required
-                                                                        data-selected="${tamanho}">
-                                                                        <option value="" disabled>Selecione o tamanho
-                                                                        </option>
-                                                                        <option value="Pequeno">Pequeno</option>
-                                                                        <option value="Médio">Médio</option>
-                                                                        <option value="Grande">Grande</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Cor</label>
-                                                                    <input type="text" name="cor" class="form-control"
-                                                                        value="${item.cor}" required />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="font-weight-bold">Descrição</label>
-                                                                    <textarea rows="4" cols="4" class="form-control"
-                                                                        name="descricao"
-                                                                        required>${item.descricao}</textarea>
-                                                                </div>
-                                                                <input type="hidden" name="idAdocao"
-                                                                    value="${item.idAdocao}" />
-                                                                <div class="form-group">
-                                                                    <button type="submit"
-                                                                        class="btn btn-first btn-block">Salvar</button>
-                                                                </div>
-                                                            </form>
+                                                        <div class="collapse" id="form-edit-${item.idAdocao}">
+                                                            <div class="card card-body">
+                                                                <form action="petsAdotados" class="form-edit"
+                                                                    method="post" accept-charset="UTF-8">
+                                                                    <div class="form-group">
+                                                                        <label class="font-weight-bold">Idade</label>
+                                                                        <c:set var="idade" value="${item.idade}" />
+                                                                        <select name="idade" class="form-control"
+                                                                            required
+                                                                            data-selected="${idade.toLowerCase()}">
+                                                                            <option value="" disabled>Selecione a idade
+                                                                            </option>
+                                                                            <option value="Filhote">Filhote</option>
+                                                                            <option value="Adulto">Adulto</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="font-weight-bold">Espécie</label>
+                                                                        <input type="text" name="tipo_animal"
+                                                                            class="form-control" value="${item.tipo}"
+                                                                            required />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="font-weight-bold">Sexo</label>
+                                                                        <c:set var="sexo"
+                                                                            value="${item.getSexoPet().getSexo()}" />
+                                                                        <select name="sexo_animal" class="form-control"
+                                                                            required
+                                                                            data-selected="${sexo.toLowerCase()}">
+                                                                            <option value="" disabled>Selecione o sexo
+                                                                            </option>
+                                                                            <option value="macho">Macho</option>
+                                                                            <option value="femea">Fêmea</option>
+                                                                            <option value="desconhecido">Desconhecido
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="font-weight-bold">Tamanho</label>
+                                                                        <c:set var="tamanho"
+                                                                            value="${tamanho.toLoserCase()}" />
+                                                                        <select name="tamanho" class="form-control"
+                                                                            required data-selected="${tamanho}">
+                                                                            <option value="" disabled>Selecione o
+                                                                                tamanho
+                                                                            </option>
+                                                                            <option value="Pequeno">Pequeno</option>
+                                                                            <option value="Médio">Médio</option>
+                                                                            <option value="Grande">Grande</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="font-weight-bold">Cor</label>
+                                                                        <input type="text" name="cor"
+                                                                            class="form-control" value="${item.cor}"
+                                                                            required />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label
+                                                                            class="font-weight-bold">Descrição</label>
+                                                                        <textarea rows="4" cols="4" class="form-control"
+                                                                            name="descricao"
+                                                                            required>${item.descricao}</textarea>
+                                                                    </div>
+                                                                    <input type="hidden" name="idAdocao"
+                                                                        value="${item.idAdocao}" />
+                                                                    <div class="form-group">
+                                                                        <button type="submit"
+                                                                            class="btn btn-first btn-block">Salvar</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <form method="post" action="petsAdotados">
+                                                            <input type="hidden" name="delete"
+                                                                value="${item.idAdocao}" />
+                                                            <button type="submit"
+                                                                class="btn btn-block btn-danger mt-3 font-roboto text-white font-weight-bold">
+                                                                Deletar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="card-body">
+                                                        <div class="alert alert-info" role="alert">
+                                                            <strong>
+                                                                Data de adoção
+                                                                <fmt:formatDate pattern="dd/MM/yyyy"
+                                                                    value="${item.dataAdocao}" />
+                                                            </strong>
                                                         </div>
                                                     </div>
-                                                    <form method="post" action="petsAdotados">
-                                                        <input type="hidden" name="delete" value="${item.idAdocao}" />
-                                                        <button type="submit"
-                                                            class="btn btn-block btn-danger mt-3 font-roboto text-white font-weight-bold">
-                                                            Deletar
-                                                        </button>
-                                                    </form>
-                                                </div>	
-												</c:when>
-												<c:otherwise>
-													<div class="card-body">
-														<div class="alert alert-info" role="alert">
-														  <strong>
-														  	Data de adoção <fmt:formatDate pattern="dd/MM/yyyy" value="${item.dataAdocao}" />
-														  </strong>
-														</div>
-													</div>
-												</c:otherwise>
-											</c:choose>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <div class="card-footer text-muted text-center">
                                                 Data de criação
                                                 <fmt:formatDate pattern="dd/MM/yyyy" value="${item.dataCriacao}" />

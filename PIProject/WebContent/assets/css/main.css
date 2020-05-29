@@ -28,6 +28,10 @@ footer {
     flex: 1;
 }
 
+.show-password{
+	cursor: pointer;
+}
+
 .icon-empty{
 	width: 80px;
     height: 80px;
@@ -270,7 +274,7 @@ input.error, select.error, textarea.error, input.error ~ label{
 }
 
 /*---------------------
-  RODAPÉ
+  RODAPï¿½
 -----------------------*/
 .footer-section {
   background: #394145;
@@ -307,8 +311,6 @@ input.error, select.error, textarea.error, input.error ~ label{
 }
 
 
-
-
 .copyright-text {
   font-size: 14px;
   letter-spacing: 0.5px;
@@ -318,4 +320,16 @@ input.error, select.error, textarea.error, input.error ~ label{
   border-top: 1px solid #fff;
   padding: 25px 0;
   margin-top: 40px;
+}
+
+#append-perfil .thumb-perfil{
+	height: 160px;
+	width: 160px;
+}
+
+@media screen and (max-width: 600px){
+	.banner-sobre{
+		background-image: url(../images/banners/banner-sobre_mobile_01.png);
+		background-position-x: 42%;
+	}
 }

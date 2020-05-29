@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo.svg" />
     <title>Perfil</title>
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
@@ -16,9 +17,6 @@
 </head>
 
 <body class="d-flex-column">
-
-    <% Usuario usuario = (Usuario) session.getAttribute("usuario");%>
-
     <!-- IMPORTS PAGES -->
     <c:import var="menu" url="components/menu.jsp" />
     <c:import var="footer" url="components/footer.jsp" />

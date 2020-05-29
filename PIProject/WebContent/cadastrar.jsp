@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo.svg" />
     <title>Cadastrar</title>
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
@@ -60,7 +61,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">Senha</label>
+                                <div class="input-group">
                                 <input type="password" name="senha" class="form-control" required>
+                                <div class="input-group-prepend">
+								    <div class="input-group-text show-password" title="Ver senha">
+								      <i class="fas fa-eye"></i>
+								    </div>
+								  </div>
+                                </div>
+								<small id="error-password" class="d-block text-danger"></small>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">Tipo de usuário</label>
@@ -135,8 +144,32 @@
 		
 		$("form").validate({
 			focusInvalid: true,
-			errorElement: "small"
+			errorElement: "small",
+			errorPlacement: function(error, element){
+				if (element.attr("name") == "senha" ) {
+	                $("#error-password").text($(error).text());
+	            }else {
+	                error.insertAfter(element);
+	            }
+			},
+			success: function(label,element) {
+			    label.parent().removeClass('error');
+			    label.remove(); 
+			}
 		});
+		
+		var showPass = false;
+    	var inputPass = $("[name=senha]");
+    	$(".show-password").click(function(){
+    		if(!showPass){
+    			$(this).html('<i class="fas fa-eye-slash"></i>').attr("title","Esconder senha");
+    			inputPass.attr("type","text");
+    		}else{
+    			$(this).html('<i class="fas fa-eye"></i>').attr("title","Ver senha");
+    			inputPass.attr("type","password");
+    		}
+    		showPass = !showPass;
+    	});
 
 	});
 </script>

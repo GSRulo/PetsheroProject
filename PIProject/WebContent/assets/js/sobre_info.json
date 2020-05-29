@@ -1,0 +1,46 @@
+{
+	"data": [
+		{
+			"nome": "Uisma Lopes",
+			"ra": "819148343",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Front-end e auxílio no back-and",
+			"foto": "uisma.jpg"
+		},
+		{
+			"nome": "Breno Rossi",
+			"ra": "819156706",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Documentação e auxílio no front-end",
+			"foto": "breno.jpg"
+		},
+		{
+			"nome": "Victor Carapeto",
+			"ra": "819144457",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Banco de Dados",
+			"foto": "victor.jpg"
+		},
+		{
+			"nome": "Gabriel Rulo",
+			"ra": "819167927",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Back-End",
+			"foto": "gabriel.jpg"
+		},
+		{
+			"nome": "Lucas Lima",
+			"ra": "819152926",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Textos",
+			"foto": "lucas.jpg"
+		},
+		{
+			"nome": "Renan Pereira",
+			"ra": "819148592",
+			"turma": "CCP2AN-PLA1",
+			"descricao": "Documentação",
+			"foto": "renan.jpg"
+		}
+	]
+}

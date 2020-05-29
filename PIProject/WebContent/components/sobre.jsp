@@ -36,76 +36,35 @@
         Alunos
     </h3>
     <hr class="line-title mt-0 mb-5">
-	
-	<div class="row align-items-center mb-3">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
-	
-	<div class="row align-items-center mb-3">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
-	
-	<div class="row align-items-center mb-3">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
-	
-	<div class="row align-items-center mb-3">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
-	
-	<div class="row align-items-center mb-3">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
-	
-	<div class="row align-items-center">
-		<div class="col-lg-2">
-			<img src="assets/images/perfil-base.jpg" alt="..." class="rounded-circle img-fluid">
-		</div>
-		<div class="col-lg-6">
-			<strong>Nome</strong>
-			<span class="d-block">RA: número</span>
-			<span class="d-block">Turma: CCP2AN-PLA1</span>
-			<p class="mt-3">O que fez no projeto</p>
-		</div>
-	</div>
+    <div class="row" id="append-perfil"></div>
 </section>
+
+<script type="text/javascript" src="assets/vendors/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.getJSON("assets/js/sobre_info.json").then(function(res){
+			var data = res["data"].sort(function(a,b){
+				return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+			});
+			data.forEach(function(val){
+				var template = [
+					'<div class="col-lg-6 mb-5">',
+						'<div class="row align-items-center">',
+							'<div class="text-center col-lg-4">',
+								'<img src="assets/images/'+ val.foto +'" alt="" class="rounded-circle img-fluid thumb-perfil">',
+							'</div>',
+							'<div class="col text-center text-lg-left">',
+								'<strong>'+val.nome+'</strong>',
+								'<span class="d-block">RA: '+val.ra+'</span>',
+								'<span class="d-block">Turma: '+val.turma+'</span>',
+								'<p class="mt-3">Participação: '+val.descricao+'</p>',
+							'</div>',
+						'</div>',
+					'</div>'
+				];
+				$("#append-perfil").append(template.join(""));
+			});
+		});
+	});
+</script>

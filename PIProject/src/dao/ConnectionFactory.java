@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "1q2w3e4r5t";
+	private static final String PASSWORD = "Password";
 	private static final String HOST = "localhost";
 	private static final String PORT = "3306";
 	private static final String QUERY = "?useTimezone=true&serverTimezone=America/Sao_Paulo";
